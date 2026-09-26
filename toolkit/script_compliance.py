@@ -32,10 +32,13 @@ COMPLIANT_CART_TERMS = [
     "cart down below", "cart below", "orange basket", "yellow basket"
 ]
 
-def audit_script(script_text: str, is_tiktok_shop: bool = True) -> Dict[str, Any]:
+def audit_script(script_text: str, is_tiktok_shop: bool = True, target_mode: str = "both") -> Dict[str, Any]:
     """
     Performs a strict compliance audit on a video script.
-    Returns audit status, violations, warnings, and scoring metrics.
+    target_mode:
+      - "both": Audits for both TikTok Creator Rewards (>60s) and YouTube Shorts (<60s).
+      - "tiktok_rewards": Enforces 65s–120s sweet spot for TikTok Creator Rewards RPM ($0.40–$1.50/1k views).
+      - "youtube_shorts": Enforces 48s–58s (<60.0s hard ceiling) for YouTube Shorts algorithm retention.
     """
     text_lower = script_text.lower()
     violations: List[str] = []
@@ -100,20 +103,48 @@ def audit_script(script_text: str, is_tiktok_shop: bool = True) -> Dict[str, Any
     else:
         passed_checks.append("Explicit visual product demonstration / B-roll cue present.")
 
-    # 6. Word Count & Duration Pacing
-    # If the script contains quoted dialogue, measure spoken words; otherwise measure all text
+    # 6. Word Count & Duration Pacing (Dual-Target Engine)
     quoted_parts = re.findall(r'"([^"]+)"', script_text)
     spoken_text = " ".join(quoted_parts) if quoted_parts else script_text
     words = len(re.findall(r'\b\w+\b', spoken_text))
     estimated_duration_sec = round(words / 2.4, 1)
 
-    if estimated_duration_sec < 60.0:
-        warnings.append(
-            f"PACING WARNING: Script is ~{words} words (~{estimated_duration_sec}s). "
-            "Videos under 60 seconds do not qualify for Creator Rewards Program RPM pool."
-        )
-    else:
-        passed_checks.append(f"Duration target met: ~{words} words (~{estimated_duration_sec}s > 60s qualified).")
+    tiktok_qualified = estimated_duration_sec > 60.0
+    shorts_qualified = estimated_duration_sec < 60.0
+
+    # Mode A: TikTok Creator Rewards Audit
+    if target_mode in ("tiktok_rewards", "both"):
+        if not tiktok_qualified:
+            warnings.append(
+                f"TIKTOK REWARDS INELIGIBLE: Script is ~{words} words (~{estimated_duration_sec}s). "
+                "TikTok Creator Rewards strictly requires videos to be strictly > 60 seconds (target: 65s–120s) "
+                "to qualify for RPM payouts ($0.40–$1.50/1k views). Videos <= 60s earn $0.00 from the Rewards pool."
+            )
+        elif 61.0 <= estimated_duration_sec <= 120.0:
+            passed_checks.append(
+                f"TikTok Creator Rewards Qualified: ~{words} words (~{estimated_duration_sec}s, "
+                "within 65s–120s sweet spot for maximum retention and RPM monetization)."
+            )
+        else:
+            passed_checks.append(
+                f"TikTok Creator Rewards Qualified (Extended Cut): ~{words} words (~{estimated_duration_sec}s > 60s)."
+            )
+
+    # Mode B: YouTube Shorts Audit
+    if target_mode in ("youtube_shorts", "both"):
+        if not shorts_qualified:
+            warnings.append(
+                f"YOUTUBE SHORTS OVERSIZED: Script is ~{words} words (~{estimated_duration_sec}s). "
+                "YouTube Shorts has a strict 60.0s hard ceiling. Videos >= 60s forfeit Shorts shelf looping."
+            )
+        elif 45.0 <= estimated_duration_sec < 60.0:
+            passed_checks.append(
+                f"YouTube Shorts Optimized: ~{words} words (~{estimated_duration_sec}s, within 48s–58s Shorts target)."
+            )
+        else:
+            passed_checks.append(
+                f"YouTube Shorts Valid: ~{words} words (~{estimated_duration_sec}s < 60s)."
+            )
 
     is_compliant = len(violations) == 0
 
@@ -123,7 +154,10 @@ def audit_script(script_text: str, is_tiktok_shop: bool = True) -> Dict[str, Any
         "warnings": warnings,
         "passed_checks": passed_checks,
         "word_count": words,
-        "estimated_duration_sec": estimated_duration_sec
+        "estimated_duration_sec": estimated_duration_sec,
+        "tiktok_rewards_qualified": tiktok_qualified,
+        "youtube_shorts_qualified": shorts_qualified,
+        "target_mode": target_mode
     }
 
 if __name__ == "__main__":
