@@ -27,7 +27,7 @@ BATCH_STORIES_FILE = SCRIPT_DIR / "batch_stories_20.json"
 OUTPUT_DIR = Path("/home/jeremy/PhoneShare/youtube_shorts_batch")
 COVERS_DIR = OUTPUT_DIR / "covers"
 
-def run_batch(start_idx=0, end_idx=20, force=False):
+def run_batch(start_idx=0, end_idx=20, force=False, engine="edge"):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     COVERS_DIR.mkdir(parents=True, exist_ok=True)
     
@@ -38,7 +38,7 @@ def run_batch(start_idx=0, end_idx=20, force=False):
     print(f"\n=======================================================")
     print(f"🚀 STARTING YOUTUBE SHORTS BATCH PRODUCTION ({total_stories} VIDEOS)")
     print(f"📁 Output Directory: {OUTPUT_DIR}")
-    print(f"🎙️ Model: eleven_flash_v2_5 (50% credit rate)")
+    print(f"🎙️ TTS Engine: {engine.upper()} (Zero API costs when using EDGE)")
     print(f"🎨 Subtitle Style: Option 4 (Clean White + Deep Shadow)")
     print(f"=======================================================\n")
     
@@ -59,11 +59,17 @@ def run_batch(start_idx=0, end_idx=20, force=False):
         else:
             try:
                 t0 = time.time()
+                # Select voice based on engine
+                if engine == "elevenlabs":
+                    chosen_voice = story.get("voice_id", "pNInz6obpgDQGcFmaJgB")
+                else:
+                    chosen_voice = story.get("voice", "en-US-BrianNeural")
+                    
                 build_automated_video(
                     story_data=story,
                     output_filename=str(output_file),
-                    voice=story.get("voice_id", "pNInz6obpgDQGcFmaJgB"),
-                    engine="elevenlabs",
+                    voice=chosen_voice,
+                    engine=engine,
                     caption_style="white_shadow",
                     include_intro=True,
                     force_tts=force,
@@ -133,7 +139,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Batch Render 20 YouTube Shorts")
     parser.add_argument("--start", type=int, default=0, help="Start story index (0-19)")
     parser.add_argument("--end", type=int, default=20, help="End story index (1-20)")
+    parser.add_argument("--engine", default="edge", choices=["edge", "elevenlabs"], help="TTS Engine (default: edge for 100% free)")
     parser.add_argument("--force", action="store_true", help="Force re-rendering of existing videos")
     args = parser.parse_args()
     
-    run_batch(start_idx=args.start, end_idx=args.end, force=args.force)
+    run_batch(start_idx=args.start, end_idx=args.end, force=args.force, engine=args.engine)

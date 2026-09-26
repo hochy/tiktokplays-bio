@@ -110,7 +110,8 @@ def render_story_segment_16x9(
     output_mp4: str,
     bg_video_path: str,
     bg_offset: float = 0.0,
-    force_tts: bool = False
+    force_tts: bool = False,
+    engine: str = "edge"
 ) -> float:
     """
     Renders a single story into a 16:9 horizontal MP4 segment (1920x1080).
@@ -141,8 +142,7 @@ def render_story_segment_16x9(
     title_word_count = len(spoken_title.split())
     
     # 3. Audio & Captions Synthesis
-    has_eleven = bool(os.environ.get("ELEVENLABS_API_KEY"))
-    if has_eleven:
+    if engine == "elevenlabs" and os.environ.get("ELEVENLABS_API_KEY"):
         voice_id = story.get("voice_id", "pNInz6obpgDQGcFmaJgB")
         title_end_time = synthesize_with_elevenlabs(
             full_text=full_text,
@@ -159,12 +159,13 @@ def render_story_segment_16x9(
         vtt_path = str(temp_dir / f"audio_{story['id']}.vtt")
         txt_path = temp_dir / "story.txt"
         txt_path.write_text(full_text, encoding="utf-8")
+        chosen_voice = story.get("voice", "en-US-BrianNeural")
         subprocess.run([
             EDGE_TTS_BIN,
             "--file", str(txt_path),
             "--write-media", audio_path,
             "--write-subtitles", vtt_path,
-            "--voice", "en-US-BrianNeural",
+            "--voice", chosen_voice,
             "--rate", "+5%"
         ], check=True)
         with open(vtt_path, "r", encoding="utf-8") as f:
@@ -246,7 +247,8 @@ def build_longform_compilation(
     bg_video: str = None,
     story_count: int = 10,
     volume_num: int = 1,
-    force_render: bool = False
+    force_render: bool = False,
+    engine: str = "edge"
 ):
     """
     Compiles 8–15 stories into a single 35–50 minute 16:9 YouTube MP4 with chapters and metadata.
@@ -274,6 +276,7 @@ def build_longform_compilation(
     print("\n=======================================================")
     print(f"🎬 BUILDING 16:9 YOUTUBE COMPILATION (VOLUME {volume_num})")
     print(f"📚 Stories Count: {total_selected}")
+    print(f"🎙️ TTS Engine: {engine.upper()} (Zero API costs when using EDGE)")
     print(f"🎮 Background Source: {bg_video}")
     print(f"📁 Output Directory: {out_dir}")
     print("=======================================================\n")
@@ -297,7 +300,7 @@ def build_longform_compilation(
         bg_offset = (i * 180.0) % 3200.0
         if not os.path.exists(seg_mp4) or force_render:
             t0 = time.time()
-            dur = render_story_segment_16x9(story, seg_mp4, bg_video, bg_offset=bg_offset)
+            dur = render_story_segment_16x9(story, seg_mp4, bg_video, bg_offset=bg_offset, engine=engine)
             print(f"   ↳ Rendered segment ({dur:.1f}s) in {time.time() - t0:.1f}s")
         else:
             dur = get_video_duration(seg_mp4)
@@ -381,6 +384,7 @@ if __name__ == "__main__":
     parser.add_argument("--count", type=int, default=10, help="Number of stories to include (default: 10)")
     parser.add_argument("--vol", type=int, default=1, help="Volume number (default: 1)")
     parser.add_argument("--bg", default=None, help="Path to 16:9 horizontal gameplay background")
+    parser.add_argument("--engine", default="edge", choices=["edge", "elevenlabs"], help="TTS engine (default: edge for 100% free)")
     parser.add_argument("--force", action="store_true", help="Force re-rendering of story segments")
     args = parser.parse_args()
     
@@ -388,5 +392,6 @@ if __name__ == "__main__":
         story_count=args.count,
         volume_num=args.vol,
         bg_video=args.bg,
+        engine=args.engine,
         force_render=args.force
     )
