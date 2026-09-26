@@ -43,10 +43,22 @@ PlayResY: 1080
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Style16x9WhiteShadow,Liberation Sans,52,&H00FFFFFF,&H00000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0,1,6,5,2,80,80,140,1
+Style: StyleWatermark16x9,Liberation Sans,26,&H00FFFFFF,&H00000000,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,3,10,0,7,50,50,45,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
+
+def sec_to_ass_time(seconds: float) -> str:
+    """Formats seconds into ASS timestamp format (H:MM:SS.cs)."""
+    h = int(seconds // 3600)
+    m = int((seconds % 3600) // 60)
+    s = int(seconds % 60)
+    cs = int(round((seconds - int(seconds)) * 100))
+    if cs >= 100:
+        s += 1
+        cs -= 100
+    return f"{h}:{m:02d}:{s:02d}.{cs:02d}"
 
 def sec_to_timestamp(seconds: float) -> str:
     """Formats seconds into YouTube chapter timestamp format (MM:SS or HH:MM:SS)."""
@@ -174,16 +186,17 @@ def render_story_segment_16x9(
         title_end_time = 5.0
         vtt_to_ass(vtt_path, ass_path, title_end_time, caption_style="white_shadow", time_offset=0.0)
 
-    # Convert the ASS file to 16:9 PlayRes & styling
+    audio_dur = get_video_duration(audio_path)
+    total_dur = audio_dur + 0.5
+
+    # Convert the ASS file to 16:9 PlayRes & styling + Persistent Watermark
     ass_content = Path(ass_path).read_text(encoding="utf-8")
     if "[Events]" in ass_content:
         events_part = ass_content.split("[Events]")[1]
         events_part = events_part.replace("StyleWhiteShadow", "Style16x9WhiteShadow")
-        new_ass = ASS_HEADER_16X9 + events_part
+        watermark_line = f"\nDialogue: 0,0:00:00.00,{sec_to_ass_time(total_dur)},StyleWatermark16x9,,0,0,0,,{{\\b1}}TIKTOK PLAYS{{\\b0}}  •  @TiktokPlaysGames\n"
+        new_ass = ASS_HEADER_16X9 + watermark_line + events_part.lstrip()
         Path(ass_path).write_text(new_ass, encoding="utf-8")
-        
-    audio_dur = get_video_duration(audio_path)
-    total_dur = audio_dur + 0.5
     
     # 4. Check Background Video Aspect Ratio
     probe_cmd = [

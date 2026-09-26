@@ -25,6 +25,7 @@ from reddit_card_generator import generate_reddit_card
 
 VENV_PYTHON = "/home/jeremy/Documents/antigravity/keen-rutherford/toolkit/venv/bin/python3"
 EDGE_TTS_BIN = "/home/jeremy/Documents/antigravity/keen-rutherford/toolkit/venv/bin/edge-tts"
+BACKGROUND_VIDEO = "/home/jeremy/PhoneShare/minecraft_gameplay.mp4"
 REPO_ROOT = Path(__file__).parent.parent
 LOCAL_BUMPER = REPO_ROOT / "assets" / "branding" / "intro_bumper_ready.mp4"
 INTRO_BUMPER = str(LOCAL_BUMPER) if LOCAL_BUMPER.exists() else "/home/jeremy/PhoneShare/tiktok_working/branding/intro_bumper_ready.mp4"
@@ -235,6 +236,9 @@ def build_ass_subtitles(phrases, ass_path, caption_style="white_shadow", time_of
         st = CAPTION_STYLES.get(caption_style, CAPTION_STYLES["white_shadow"])
         style_lines = [st["style_def"]]
 
+    channel_watermark_style = "Style: ChannelWatermark,Liberation Sans,26,&H00FFFFFF,&H00000000,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,3,10,0,7,45,45,210,1"
+    style_lines.append(channel_watermark_style)
+
     ass_header = f"""[Script Info]
 Title: TikTok Automated Captions
 ScriptType: v4.00+
@@ -285,6 +289,10 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             p_e = max(0.0, p_end - time_offset)
             formatted_text = p_text.upper()
             events.append(f"Dialogue: 0,{sec_to_ass_time(p_s)},{sec_to_ass_time(p_e)},{st_name},,0,0,0,,{formatted_text}\n")
+
+    if phrases:
+        end_sec = max(0.0, phrases[-1][1] - time_offset + 0.5)
+        events.insert(0, f"Dialogue: 0,0:00:00.00,{sec_to_ass_time(end_sec)},ChannelWatermark,,0,0,0,,{{\\b1}}TIKTOK PLAYS{{\\b0}}  •  @tiktokplaygames\n")
 
     with open(ass_path, "w", encoding="utf-8") as f:
         f.write(ass_header)
