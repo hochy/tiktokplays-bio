@@ -203,7 +203,7 @@ def render_story_segment_16x9(
     if is_horizontal:
         # Native 16:9 gameplay: scale/crop directly to 1920x1080
         vf = (
-            f"[0:v]trim={bg_offset:.2f}:{bg_offset + total_dur:.2f},setpts=PTS-STARTPTS,"
+            f"[0:v]trim=0:{total_dur:.2f},setpts=PTS-STARTPTS,fps=30,"
             f"scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,setsar=1:1,format=yuv420p[bg];"
             f"[1:v]format=rgba,fade=t=out:st={card_fade_start:.2f}:d=0.4:alpha=1[card];"
             f"[bg][card]overlay=(W-w)/2:(H-h)/2:enable='between(t,0,{title_end_time:.2f})'[v_card];"
@@ -212,7 +212,7 @@ def render_story_segment_16x9(
     else:
         # Vertical gameplay (fallback): Blurred 16:9 backdrop + sharp centered 1080x1920 gameplay
         vf = (
-            f"[0:v]trim={bg_offset:.2f}:{bg_offset + total_dur:.2f},setpts=PTS-STARTPTS,fps=30[raw_bg];"
+            f"[0:v]trim=0:{total_dur:.2f},setpts=PTS-STARTPTS,fps=30[raw_bg];"
             f"[raw_bg]split=2[fg_in][blur_in];"
             f"[blur_in]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,"
             f"boxblur=25:25,eq=brightness=-0.12[bg_blur];"
@@ -225,6 +225,7 @@ def render_story_segment_16x9(
         
     ffmpeg_cmd = [
         "ffmpeg", "-y",
+        "-ss", f"{bg_offset:.2f}",
         "-stream_loop", "-1",
         "-i", bg_video_path,
         "-i", card_path,
@@ -293,7 +294,7 @@ def build_longform_compilation(
         print(f"⏱️ [{timestamp_str}] Story {story_num}/{total_selected}: {clean_title[:55]}...")
         
         # 2. Render Story Segment (16:9)
-        bg_offset = (i * 25.0) % 80.0
+        bg_offset = (i * 180.0) % 3200.0
         if not os.path.exists(seg_mp4) or force_render:
             t0 = time.time()
             dur = render_story_segment_16x9(story, seg_mp4, bg_video, bg_offset=bg_offset)
