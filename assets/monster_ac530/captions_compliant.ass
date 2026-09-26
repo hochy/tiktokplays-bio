@@ -1,0 +1,64 @@
+[Script Info]
+Title: TikTok Compliant Product Captions
+ScriptType: v4.00+
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+YCbCr Matrix: TV.601
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: StyleWhiteShadow,Liberation Sans,62,&H00FFFFFF,&H00000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0,1,6,5,2,40,40,580,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:00.99,StyleWhiteShadow,,0,0,0,,IF YOU STILL USE
+Dialogue: 0,0:00:01.03,0:00:02.66,StyleWhiteShadow,,0,0,0,,BULKY GAMING HEADSETS OR
+Dialogue: 0,0:00:02.75,0:00:04.30,StyleWhiteShadow,,0,0,0,,IN-EAR EARBUDS THAT GIVE
+Dialogue: 0,0:00:04.34,0:00:05.29,StyleWhiteShadow,,0,0,0,,YOU EAR PAIN AND
+Dialogue: 0,0:00:05.39,0:00:06.73,StyleWhiteShadow,,0,0,0,,SWEAT AFTER TWO HOURS,
+Dialogue: 0,0:00:06.91,0:00:08.05,StyleWhiteShadow,,0,0,0,,STOP SCROLLING.
+Dialogue: 0,0:00:08.43,0:00:09.72,StyleWhiteShadow,,0,0,0,,HEAVY HEADSETS CRUSH YOUR
+Dialogue: 0,0:00:09.76,0:00:10.40,StyleWhiteShadow,,0,0,0,,TEMPLES,
+Dialogue: 0,0:00:10.52,0:00:12.20,StyleWhiteShadow,,0,0,0,,WHILE NORMAL EARBUDS JAM
+Dialogue: 0,0:00:12.32,0:00:13.19,StyleWhiteShadow,,0,0,0,,DEEP INTO YOUR EAR
+Dialogue: 0,0:00:13.25,0:00:13.89,StyleWhiteShadow,,0,0,0,,CANAL,
+Dialogue: 0,0:00:14.10,0:00:15.59,StyleWhiteShadow,,0,0,0,,COMPLETELY BLOCKING OUT YOUR
+Dialogue: 0,0:00:15.66,0:00:16.87,StyleWhiteShadow,,0,0,0,,ROOM AWARENESS.
+Dialogue: 0,0:00:17.31,0:00:18.30,StyleWhiteShadow,,0,0,0,,THAT IS WHY EVERYONE
+Dialogue: 0,0:00:18.33,0:00:19.04,StyleWhiteShadow,,0,0,0,,IS SWITCHING TO THE
+Dialogue: 0,0:00:19.12,0:00:21.55,StyleWhiteShadow,,0,0,0,,MONSTER AC530 OPEN EAR
+Dialogue: 0,0:00:21.64,0:00:22.58,StyleWhiteShadow,,0,0,0,,EARBUDS.
+Dialogue: 0,0:00:22.96,0:00:24.46,StyleWhiteShadow,,0,0,0,,INSTEAD OF PLUGGING INSIDE
+Dialogue: 0,0:00:24.51,0:00:25.34,StyleWhiteShadow,,0,0,0,,YOUR EARS,
+Dialogue: 0,0:00:25.50,0:00:26.81,StyleWhiteShadow,,0,0,0,,THEY REST COMFORTABLY ON
+Dialogue: 0,0:00:26.84,0:00:28.93,StyleWhiteShadow,,0,0,0,,THE OUTSIDE WITH ZERO-GRAVITY
+Dialogue: 0,0:00:29.00,0:00:30.65,StyleWhiteShadow,,0,0,0,,TITANIUM EARHOOKS.
+Dialogue: 0,0:00:31.16,0:00:33.03,StyleWhiteShadow,,0,0,0,,YOU GET CRYSTAL-CLEAR DIRECTIONAL
+Dialogue: 0,0:00:33.11,0:00:35.69,StyleWhiteShadow,,0,0,0,,AUDIO FROM MASSIVE FOURTEEN-POINT-TWO
+Dialogue: 0,0:00:35.80,0:00:37.69,StyleWhiteShadow,,0,0,0,,MILLIMETER DRIVERS WITH ZERO
+Dialogue: 0,0:00:37.80,0:00:38.84,StyleWhiteShadow,,0,0,0,,EAR FATIGUE.
+Dialogue: 0,0:00:39.22,0:00:40.40,StyleWhiteShadow,,0,0,0,,THEY RUN ON BLUETOOTH
+Dialogue: 0,0:00:40.48,0:00:43.00,StyleWhiteShadow,,0,0,0,,6.0 WITH ULTRA-LOW GAMING
+Dialogue: 0,0:00:43.08,0:00:43.79,StyleWhiteShadow,,0,0,0,,LATENCY,
+Dialogue: 0,0:00:43.97,0:00:45.13,StyleWhiteShadow,,0,0,0,,SO YOUR FOOTSTEPS AND
+Dialogue: 0,0:00:45.20,0:00:46.80,StyleWhiteShadow,,0,0,0,,DISCORD CALLS STAY IN
+Dialogue: 0,0:00:46.89,0:00:47.90,StyleWhiteShadow,,0,0,0,,PERFECT SYNC.
+Dialogue: 0,0:00:48.41,0:00:49.89,StyleWhiteShadow,,0,0,0,,THE CHARGING CASE FEATURES
+Dialogue: 0,0:00:49.92,0:00:52.44,StyleWhiteShadow,,0,0,0,,AN INGENIOUS DUAL-FOLDING DESIGN
+Dialogue: 0,0:00:52.65,0:00:53.88,StyleWhiteShadow,,0,0,0,,THAT SLIPS RIGHT INTO
+Dialogue: 0,0:00:53.96,0:00:54.67,StyleWhiteShadow,,0,0,0,,YOUR POCKET.
+Dialogue: 0,0:00:55.11,0:00:55.78,StyleWhiteShadow,,0,0,0,,PLUS,
+Dialogue: 0,0:00:56.06,0:00:58.25,StyleWhiteShadow,,0,0,0,,THEY ARE IPX5 SWEAT-PROOF
+Dialogue: 0,0:00:58.30,0:01:00.07,StyleWhiteShadow,,0,0,0,,FOR GAMING MARATHONS OR
+Dialogue: 0,0:01:00.15,0:01:01.02,StyleWhiteShadow,,0,0,0,,WORKOUTS.
+Dialogue: 0,0:01:01.46,0:01:02.36,StyleWhiteShadow,,0,0,0,,YOU CAN GRAB THESE
+Dialogue: 0,0:01:02.39,0:01:03.91,StyleWhiteShadow,,0,0,0,,DIRECTLY ON TIKTOK SHOP
+Dialogue: 0,0:01:03.96,0:01:05.33,StyleWhiteShadow,,0,0,0,,FROM THE VERIFIED MONSTER
+Dialogue: 0,0:01:05.39,0:01:07.21,StyleWhiteShadow,,0,0,0,,STORE WITH FAST SHIPPING
+Dialogue: 0,0:01:07.36,0:01:09.28,StyleWhiteShadow,,0,0,0,,AND MANUFACTURER WARRANTY.
+Dialogue: 0,0:01:09.60,0:01:10.79,StyleWhiteShadow,,0,0,0,,TAP THE ORANGE CART
+Dialogue: 0,0:01:10.84,0:01:11.97,StyleWhiteShadow,,0,0,0,,BELOW TO CHECK CURRENT
+Dialogue: 0,0:01:12.02,0:01:14.05,StyleWhiteShadow,,0,0,0,,AVAILABILITY AND DEALS BEFORE
+Dialogue: 0,0:01:14.08,0:01:15.56,StyleWhiteShadow,,0,0,0,,THEY SELL OUT.

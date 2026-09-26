@@ -1,0 +1,64 @@
+[Script Info]
+Title: TikTok Product Captions
+ScriptType: v4.00+
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+YCbCr Matrix: TV.601
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: StyleWhiteShadow,Liberation Sans,62,&H00FFFFFF,&H00000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0,1,6,5,2,40,40,580,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:00.95,StyleWhiteShadow,,0,0,0,,IF YOU STILL USE
+Dialogue: 0,0:00:01.01,0:00:02.71,StyleWhiteShadow,,0,0,0,,BULKY GAMING HEADSETS OR
+Dialogue: 0,0:00:02.82,0:00:04.88,StyleWhiteShadow,,0,0,0,,IN-EAR EARBUDS THAT GIVE
+Dialogue: 0,0:00:04.91,0:00:05.79,StyleWhiteShadow,,0,0,0,,YOU EAR PAIN AND
+Dialogue: 0,0:00:05.91,0:00:07.31,StyleWhiteShadow,,0,0,0,,SWEAT AFTER TWO HOURS,
+Dialogue: 0,0:00:07.52,0:00:08.53,StyleWhiteShadow,,0,0,0,,STOP SCROLLING.
+Dialogue: 0,0:00:08.81,0:00:10.08,StyleWhiteShadow,,0,0,0,,HEAVY HEADSETS CRUSH YOUR
+Dialogue: 0,0:00:10.14,0:00:10.79,StyleWhiteShadow,,0,0,0,,TEMPLES,
+Dialogue: 0,0:00:10.90,0:00:12.86,StyleWhiteShadow,,0,0,0,,WHILE NORMAL EARBUDS JAM
+Dialogue: 0,0:00:12.98,0:00:13.98,StyleWhiteShadow,,0,0,0,,DEEP INTO YOUR EAR
+Dialogue: 0,0:00:14.05,0:00:14.77,StyleWhiteShadow,,0,0,0,,CANAL,
+Dialogue: 0,0:00:14.90,0:00:16.27,StyleWhiteShadow,,0,0,0,,COMPLETELY BLOCKING OUT YOUR
+Dialogue: 0,0:00:16.32,0:00:17.33,StyleWhiteShadow,,0,0,0,,ROOM AWARENESS.
+Dialogue: 0,0:00:17.58,0:00:18.70,StyleWhiteShadow,,0,0,0,,THAT IS WHY EVERYONE
+Dialogue: 0,0:00:18.74,0:00:19.53,StyleWhiteShadow,,0,0,0,,IS SWITCHING TO THE
+Dialogue: 0,0:00:19.59,0:00:22.15,StyleWhiteShadow,,0,0,0,,MONSTER AC530 OPEN EAR
+Dialogue: 0,0:00:22.24,0:00:23.10,StyleWhiteShadow,,0,0,0,,EARBUDS.
+Dialogue: 0,0:00:23.55,0:00:24.87,StyleWhiteShadow,,0,0,0,,INSTEAD OF PLUGGING INSIDE
+Dialogue: 0,0:00:24.90,0:00:25.63,StyleWhiteShadow,,0,0,0,,YOUR EARS,
+Dialogue: 0,0:00:25.79,0:00:27.18,StyleWhiteShadow,,0,0,0,,THEY REST COMFORTABLY ON
+Dialogue: 0,0:00:27.23,0:00:29.42,StyleWhiteShadow,,0,0,0,,THE OUTSIDE WITH ZERO-GRAVITY
+Dialogue: 0,0:00:29.50,0:00:31.21,StyleWhiteShadow,,0,0,0,,TITANIUM EARHOOKS.
+Dialogue: 0,0:00:31.49,0:00:33.04,StyleWhiteShadow,,0,0,0,,YOU GET CRYSTAL-CLEAR DIRECTIONAL
+Dialogue: 0,0:00:33.11,0:00:35.47,StyleWhiteShadow,,0,0,0,,AUDIO FROM MASSIVE FOURTEEN-POINT-TWO
+Dialogue: 0,0:00:35.56,0:00:37.56,StyleWhiteShadow,,0,0,0,,MILLIMETER DRIVERS WITH ZERO
+Dialogue: 0,0:00:37.67,0:00:38.80,StyleWhiteShadow,,0,0,0,,EAR FATIGUE.
+Dialogue: 0,0:00:39.18,0:00:40.26,StyleWhiteShadow,,0,0,0,,THEY RUN ON BLUETOOTH
+Dialogue: 0,0:00:40.34,0:00:42.60,StyleWhiteShadow,,0,0,0,,6.0 WITH ULTRA-LOW GAMING
+Dialogue: 0,0:00:42.71,0:00:43.55,StyleWhiteShadow,,0,0,0,,LATENCY,
+Dialogue: 0,0:00:43.76,0:00:44.90,StyleWhiteShadow,,0,0,0,,SO YOUR FOOTSTEPS AND
+Dialogue: 0,0:00:44.97,0:00:46.56,StyleWhiteShadow,,0,0,0,,DISCORD CALLS STAY IN
+Dialogue: 0,0:00:46.65,0:00:47.57,StyleWhiteShadow,,0,0,0,,PERFECT SYNC.
+Dialogue: 0,0:00:47.95,0:00:49.30,StyleWhiteShadow,,0,0,0,,THE CHARGING CASE FEATURES
+Dialogue: 0,0:00:49.34,0:00:51.70,StyleWhiteShadow,,0,0,0,,AN INGENIOUS DUAL-FOLDING DESIGN
+Dialogue: 0,0:00:51.76,0:00:52.72,StyleWhiteShadow,,0,0,0,,THAT SLIPS RIGHT INTO
+Dialogue: 0,0:00:52.79,0:00:53.48,StyleWhiteShadow,,0,0,0,,YOUR POCKET.
+Dialogue: 0,0:00:53.80,0:00:54.37,StyleWhiteShadow,,0,0,0,,PLUS,
+Dialogue: 0,0:00:54.48,0:00:56.59,StyleWhiteShadow,,0,0,0,,THEY ARE IPX5 SWEAT-PROOF
+Dialogue: 0,0:00:56.62,0:00:58.04,StyleWhiteShadow,,0,0,0,,FOR GAMING MARATHONS OR
+Dialogue: 0,0:00:58.12,0:00:58.87,StyleWhiteShadow,,0,0,0,,WORKOUTS.
+Dialogue: 0,0:00:59.31,0:01:00.05,StyleWhiteShadow,,0,0,0,,RIGHT NOW,
+Dialogue: 0,0:01:00.26,0:01:01.29,StyleWhiteShadow,,0,0,0,,MONSTER IS RUNNING A
+Dialogue: 0,0:01:01.36,0:01:02.74,StyleWhiteShadow,,0,0,0,,LIMITED FLASH SALE ON
+Dialogue: 0,0:01:02.82,0:01:04.55,StyleWhiteShadow,,0,0,0,,TIKTOK SHOP FOR NINETEEN
+Dialogue: 0,0:01:04.62,0:01:06.23,StyleWhiteShadow,,0,0,0,,DOLLARS AND THIRTY-NINE CENTS,
+Dialogue: 0,0:01:06.29,0:01:07.88,StyleWhiteShadow,,0,0,0,,OVER FIFTY PERCENT OFF.
+Dialogue: 0,0:01:08.13,0:01:09.17,StyleWhiteShadow,,0,0,0,,TAP THE ORANGE CART
+Dialogue: 0,0:01:09.23,0:01:10.68,StyleWhiteShadow,,0,0,0,,BELOW BEFORE STOCK SELLS
+Dialogue: 0,0:01:10.74,0:01:11.56,StyleWhiteShadow,,0,0,0,,OUT.

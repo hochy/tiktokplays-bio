@@ -1,1 +1,38 @@
+# Environment & Secrets
+.env
+.env*
+*.key
+
+# Python & Dependencies
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+toolkit/venv/
+node_modules/
+
+# Media & Large Files (Exclude video/audio renders from git)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.mp3
+*.wav
+*.aac
+*.m4a
+uploads/
 tiktok_data/
+
+# Whitelist small channel branding assets
+!assets/branding/
+!assets/branding/*
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -23,6 +23,13 @@ def generate_script(topic, goal, target_offer, pain_point):
     else:
         cta = f'CTA: "Check the link in my bio for the complete walkthrough, and follow for daily breakdowns on {topic}."'
 
+    if goal == "tiktok_shop":
+        visual_cta = "[Visual Cue]: Point finger toward lower-left corner toward the orange shopping cart."
+    elif goal == "digital_product":
+        visual_cta = "[Visual Cue]: Flash profile arrow pointing to bio link."
+    else:
+        visual_cta = "[Visual Cue]: Text prompt on screen asking question to drive comments."
+
     script = f"""================================================================
            TIKTOK HIGH-RETENTION SCRIPT (65-75 SECONDS)
 ================================================================
@@ -59,9 +66,29 @@ And step number three: never skip the verification. Test this on a small scale f
 [00:60 - 00:72] THE MONETIZATION ENGINE (Call to Action):
 "{cta}"
 
-[Visual Cue]: Point finger toward lower-left corner (for TikTok Shop orange cart) or flash profile arrow (for bio link).
+{visual_cta}
 ================================================================
 """
+    try:
+        from toolkit.script_compliance import audit_script
+    except ImportError:
+        from script_compliance import audit_script
+
+    audit = audit_script(script, is_tiktok_shop=(goal == "tiktok_shop"))
+    script += """================================================================
+COMPLIANCE & HEALTH AUDIT (CHR / PPS SHIELD):
+- Policy Compliant: """ + ('PASSED (SAFE)' if audit['is_compliant'] else 'FAILED (RISK DETECTED)') + f"""
+- Spoken Word Count: ~{audit['word_count']} words (~{audit['estimated_duration_sec']}s)
+- Creator Rewards Threshold (>60s): {'PASSED' if audit['estimated_duration_sec'] >= 60.0 else 'FAILED'}
+- Passed Checks:
+  * """ + "\n  * ".join(audit['passed_checks'])
+
+    if audit['warnings']:
+        script += "\n- Warnings:\n  ! " + "\n  ! ".join(audit['warnings'])
+    if audit['violations']:
+        script += "\n- VIOLATIONS:\n  X " + "\n  X ".join(audit['violations'])
+
+    script += "\n================================================================\n"
     return script
 
 if __name__ == "__main__":
